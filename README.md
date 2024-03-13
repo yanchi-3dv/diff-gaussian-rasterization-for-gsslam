@@ -77,7 +77,7 @@ If you want more details, please see in the following paper and feel free to [ma
   journal={arXiv preprint arXiv:2311.11700},
   year={2023}
 }
-}</code></pre>
+</code></pre>
   </div>
 </section>
 
