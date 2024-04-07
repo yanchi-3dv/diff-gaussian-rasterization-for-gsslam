@@ -71,11 +71,12 @@ If you want more details, please see in the following paper and feel free to [ma
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h5>
-    <pre><code>@article{yan2023gs,
-  title={Gs-slam: Dense visual slam with 3d gaussian splatting},
-  author={Yan, Chi and Qu, Delin and Wang, Dong and Xu, Dan and Wang, Zhigang and Zhao, Bin and Li, Xuelong},
-  journal={arXiv preprint arXiv:2311.11700},
-  year={2023}
+    <pre><code>
+@inproceedings{yan2023gs,
+  author    = {Yan, Chi and Qu, Delin and Xu, Dan and Zhao, Bin and Wang, Zhigang and Wang, Dong and Li, Xuelong},
+  title     = {GS-SLAM: Dense Visual SLAM with 3D Gaussian Splatting},
+  booktitle = {CVPR},
+  year      ={2024},
 }
 </code></pre>
   </div>
@@ -83,10 +84,9 @@ If you want more details, please see in the following paper and feel free to [ma
 
 #### TODO:
 
-- [ ] Camera-ready for GS-SLAM.
+<!-- - [] Camera-ready for GS-SLAM. -->
 - [ ] Release the code for GS-SLAM.
 - [ ] Unify the form of pose input for efficiency and beauty.
-
 
 
 # :snowflake:Original readme below:
