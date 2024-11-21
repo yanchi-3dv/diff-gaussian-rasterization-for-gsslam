@@ -6,7 +6,7 @@ This is a modified Differential 3DGS(3D Gaussian Splatting) Rasterization versio
 
 We add some addition support for the SLAM(Simultaneous Localization And Mapping) task:
 
-- Depth rendering forward
+- Depth forward rendering 
 - Depth rendering backward
 - Pose estimation backward
 - **Two mode:** tracking_mode/mapping_mode used for choose tracking/mapping process in SLAM task.
@@ -17,7 +17,7 @@ We add some addition support for the SLAM(Simultaneous Localization And Mapping)
 
 ```bash
 # Install our modified code (cuda)
-git clone git@github.com:npu-yanchi/diff-gaussian-rasterization-for-gsslam.git
+git clone git@github.com:yanchi-3dv/diff-gaussian-rasterization-for-gsslam.git
 cd diff-gaussian-rasterization-for-gsslam
 python setup.py install
 pip install .
@@ -65,48 +65,39 @@ cam = Camera(
 - cam_q_w2c is a quaternion(w, x, y, z).
 - **Inelegant Implement:** Only cam_q_w2c and cam_t_w2c have grad, viewmatrix and projmatrix don't have grad, so after the cam_q_w2c and cam_t_w2c updated, viewmatrix and projmatrix must be update manual.
 - mapping_mode/tracking_mode are two bools, the pose grads will be calculated only when tracking_mode = True.
+- the grad from depth loss to pose still has some problem in some cases, so like the tracking formula in the GS-SLAM paper, we only use RGB loss to optimize pose. The authors have tried for a long time to resolve this issue, but unfortunately, it has not worked. If anyone discovers the underlying problem, feel free to submit a pull request or email me :smiley:.
 
-If you want more details, please see in the following paper and feel free to [mail](mailto:yan_chi@sjtu.edu.cn) me:
+If you want more details and feel free to [mail](mailto:yanchi.3dv@gmail.com) me:
 
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h5>
-    <pre><code>
-@inproceedings{yan2023gs,
-  author    = {Yan, Chi and Qu, Delin and Xu, Dan and Zhao, Bin and Wang, Zhigang and Wang, Dong and Li, Xuelong},
-  title     = {GS-SLAM: Dense Visual SLAM with 3D Gaussian Splatting},
-  booktitle = {CVPR},
-  year      ={2024},
+
+
+## Citation
+
+If you find this project helpful, please consider citing the following our paper and original Differential Gaussian Rasterization:
+
+```
+@inproceedings{yan2024gs,
+  title={Gs-slam: Dense visual slam with 3d gaussian splatting},
+  author={Yan, Chi and Qu, Delin and Xu, Dan and Zhao, Bin and Wang, Zhigang and Wang, Dong and Li, Xuelong},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={19595--19604},
+  year={2024}
 }
-</code></pre>
-  </div>
-</section>
-
-#### TODO:
-
-<!-- - [] Camera-ready for GS-SLAM. -->
-- [ ] Release the code for GS-SLAM.
-- [ ] Unify the form of pose input for efficiency and beauty.
+```
 
 
-# :snowflake:Original readme below:
 
-### Differential Gaussian Rasterization
+```
+@article{kerbl20233d,
+  title={3D Gaussian Splatting for Real-Time Radiance Field Rendering.},
+  author={Kerbl, Bernhard and Kopanas, Georgios and Leimk{\"u}hler, Thomas and Drettakis, George},
+  journal={ACM Trans. Graph.},
+  volume={42},
+  number={4},
+  pages={139--1},
+  year={2023}
+}
+```
 
-Used as the rasterization engine for the paper "3D Gaussian Splatting for Real-Time Rendering of Radiance Fields". If you can make use of it in your own research, please be so kind to cite us.
 
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h5>
-    <pre><code>@Article{kerbl3Dgaussians,
-      author       = {Kerbl, Bernhard and Kopanas, Georgios and Leimk{\"u}hler, Thomas and Drettakis, George},
-      title        = {3D Gaussian Splatting for Real-Time Radiance Field Rendering},
-      journal      = {ACM Transactions on Graphics},
-      number       = {4},
-      volume       = {42},
-      month        = {July},
-      year         = {2023},
-      url          = {https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/}
-}</code></pre>
-  </div>
-</section>
+
